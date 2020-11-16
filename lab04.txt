@@ -1,0 +1,28 @@
+Zad 1.
+a)
+select * from postac where rodzaj="wiking" and nazwa<>"Bjorn" order by data_ur DESC;
+delete from postac where id="5";
+delete from postac where id="4";
+b)
+1.Usuwanie kluczy obcych:
+alter table walizka drop foreign key walizka_ibfk_1;
+alter table izba drop foreign key izba_ibfk_1;
+alter table przetwory drop foreign key przetwory_ibfk_1;
+alter table przetwory drop foreign key przetwory_ibfk_2;
+2. Zamiana autoincrementu na int
+alter table postac modify id_postaci int;
+3.Usunięcie klucza głównego
+alter table postac drop primary key;
+
+Zad. 2 
+PESEL
+alter table postac add column pesel varchar(11) first;
+update postac set pesel="43238421717"+id_postaci;
+alter table postac add primary key (pesel);
+SYRENA
+alter table postac modify rodzaj enum("wiking,"ptak","kobieta","syrena");
+insert into potac values(43238421726,9,"Gertruda Nieszczera","syrena","1849-04-05",89,NULL);
+Zad. 3
+update postac set statek="A" where nazwa like "%a%";
+update statek set max_ladownosc=max_ladownosc*0.7 where data_wodowania > "1900-12-31" and data_wodowania<"2001-01-01";
+
