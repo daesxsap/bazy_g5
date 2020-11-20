@@ -25,4 +25,21 @@ insert into potac values(43238421726,9,"Gertruda Nieszczera","syrena","1849-04-0
 Zad. 3
 update postac set statek="A" where nazwa like "%a%";
 update statek set max_ladownosc=max_ladownosc*0.7 where data_wodowania > "1900-12-31" and data_wodowania<"2001-01-01";
+Zad. 4
+
+a. alter table postac modify rodzaj enum('wiking','ptak','kobieta','syrena','waz') default 'wiking';
+   insert into postac values ('43238421729','9','Loko','waz','1463-06-30','4','null','null');
+
+b/c. create table marynarz like postac;
+    insert into marynarz select * from postac where statek not like 'null';
+     create marynarz2 select * from postac where statek is not null;
+
+ZAD 5.
+
+a. update  postac SET statek='NULL';
+b. delete from postac where nazwa='Ivar';
+c. delete from statki;
+d. drop table statki;
+e. create table zwierz (id int AUTO_INCREMENT PRIMARY KEY,nazwa varchar(30),wiek int);
+f. insert into zwierz select id_postaci,nazwa,wiek from postac where rodzaj='ptak' or rodzaj='waz';
 
