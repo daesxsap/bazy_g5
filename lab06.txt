@@ -1,0 +1,14 @@
+Zad. 1 
+1.select avg(waga) from kreatura where rodzaj="wiking";
+2.select rodzaj,count(*), avg(waga) from kreatura group by rodzaj;
+3.select avg(2020-year(dataUr))as wiek from kreatura group by rodzaj;
+Zad.2 
+1. select rodzaj,sum(waga) from zasob group by rodzaj;
+2. select nazwa, avg(waga) from zasob where ilosc>=4 group by nazwa having sum(waga)>10;
+3.select rodzaj, count(distinct(nazwa))as liczba from zasob group by rodzaj having liczba>1;
+
+Zad.3
+1.select nazwa,sum(ilosc) from kreatura k, ekwipunek e where k.idKreatury=e.idKreatury group by nazwa;
+2.select k.nazwa, e.idZasobu, e.ilosc, s.nazwa from kreatura k, ekwipunek e, zasob s where k.idKreatury=e.idKreatury and
+ e.idZasobu=s.idZasobu;
+
