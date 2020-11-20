@@ -17,5 +17,23 @@ select * from zasob where month(dataPozyskania) in (7,8);
 select * from zasob order by waga asc;
 select * from kreatura order by dataUr desc limit 5;
 
+Zad. 4
+distinct-unikalne
+select distinct nazwa,rodzaj  from zasob;
+select concat(nazwa," ",rodzaj) from kreatura where rodzaj like "wi%";
+select nazwa,waga*ilosc from zasob where year(dataPozyskania)>=2000 and year(dataPozyskania)<=2007;
+
+Zad.5
+select nazwa, waga*0.70 as waga_netto,waga*0.30 as waga_odpadkow from zasob;
+select nazwa from zasob where rodzaj is null;
+select distinct nazwa,rodzaj from zasob where nazwa like "Ba%" or nazwa like "%os" order by nazwa;
+
+
+
+
+
+
+
+
 
 
