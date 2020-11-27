@@ -11,4 +11,11 @@ Zad.3
 1.select nazwa,sum(ilosc) from kreatura k, ekwipunek e where k.idKreatury=e.idKreatury group by nazwa;
 2.select k.nazwa, e.idZasobu, e.ilosc, s.nazwa from kreatura k, ekwipunek e, zasob s where k.idKreatury=e.idKreatury and
  e.idZasobu=s.idZasobu;
+3.select k.idKreatury, k.nazwa,e.idKreatury from kreatura k left join ekwipunek e on k.idKreatury=e.idKreatury where e.idKreatury is null;
 
+Zad. 4 
+1.select * from zasob z, kreatura natural join ekwipunek where kreatura.rodzaj="wiking" and 
+year(kreatura.dataUr) between 1670 and 1679 and z.idZasobu=ekwipunek.idZasobu;
+2select k.nazwa from kreatura k left join ekwipunek e on k.idKreatury=e.idKreatury innej join zasob z on e.idZasobu=
+z.idZasobu where z.rodzaj="jedzenie" order by dataUr desc limit 5;
+3.select k.nazwam k2.nazwa from kreatura k, kreatura k2 where k.idKreatury-k2.idKreatury=5;
