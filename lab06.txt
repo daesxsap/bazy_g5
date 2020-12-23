@@ -24,4 +24,3 @@ Zad. 5
 1.SELECT k.rodzaj, AVG(e.ilosc *z.waga) FROM kreatura AS k, ekwipunek AS e, zasob AS z where 
 k.idKreatury=e.idKreatury AND e.idZasobu=z.idZasobu AND k.rodzaj NOT IN('malpa','waz')GROUP BY rodzaj
 HAVING SUM(e.ilosc) < 30;
-2.
