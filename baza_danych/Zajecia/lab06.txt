@@ -1,0 +1,27 @@
+Zad. 1 
+1.select avg(waga) from kreatura where rodzaj="wiking";
+2.select rodzaj,count(*), avg(waga) from kreatura group by rodzaj;
+3.select avg(2020-year(dataUr))as wiek from kreatura group by rodzaj;
+Zad.2 
+1. select rodzaj,sum(waga) from zasob group by rodzaj;
+2. select nazwa, avg(waga) from zasob where ilosc>=4 group by nazwa having sum(waga)>10;
+3.select rodzaj, count(distinct(nazwa))as liczba from zasob group by rodzaj having liczba>1;
+
+Zad.3
+1.select nazwa,sum(ilosc) from kreatura k, ekwipunek e where k.idKreatury=e.idKreatury group by nazwa;
+2.select k.nazwa, e.idZasobu, e.ilosc, s.nazwa from kreatura k, ekwipunek e, zasob s where k.idKreatury=e.idKreatury and
+ e.idZasobu=s.idZasobu;
+3.select k.idKreatury, k.nazwa,e.idKreatury from kreatura k left join ekwipunek e on k.idKreatury=e.idKreatury where e.idKreatury is null;
+
+Zad. 4 
+1.select * from zasob z, kreatura natural join ekwipunek where kreatura.rodzaj="wiking" and 
+year(kreatura.dataUr) between 1670 and 1679 and z.idZasobu=ekwipunek.idZasobu;
+2select k.nazwa from kreatura k left join ekwipunek e on k.idKreatury=e.idKreatury innej join zasob z on e.idZasobu=
+z.idZasobu where z.rodzaj="jedzenie" order by dataUr desc limit 5;
+3.select k.nazwam k2.nazwa from kreatura k, kreatura k2 where k.idKreatury-k2.idKreatury=5;
+
+Zad. 5
+1.SELECT k.rodzaj, AVG(e.ilosc *z.waga) FROM kreatura AS k, ekwipunek AS e, zasob AS z where 
+k.idKreatury=e.idKreatury AND e.idZasobu=z.idZasobu AND k.rodzaj NOT IN('malpa','waz')GROUP BY rodzaj
+HAVING SUM(e.ilosc) < 30;
+2.
