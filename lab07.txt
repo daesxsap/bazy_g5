@@ -1,0 +1,31 @@
+Zad. 1 
+2.
+3. select w.nazwa, sum(e.ilosc) from wyprawa w, ekwipunek e, kreatura k, uczestnicy u, zasob z where
+e.idKreatury=k.idKreatury and u.id_wyprawy=w.id_wyprawy and u.id_uczestnika=k.idKreatury 
+and e.idZasobu=z.idZasobu group by w.nazwa;
+
+Zad. 2
+1.select w.nazwa, count(u.id_uczestnika),group_concat(k.nazwa) from 
+wyprawa w, kreatura k, uczestnicy u where u.id_wyprawy=w.id_wyprawy and u.id_uczestnika=k.idKreatury group by w.nazwa;
+2. select e.idEtapu, s.nazwa as "nazwa sektora", k.nazwa as "nazwa kierownika" from etapy_wyprawy e, sektor s, wyprawa w,kreatura k where w.kierownik=k.idKreatury 
+and w.id_wyprawy=e.idWyprawy and e.sektor=s.id_sektora order by w.data_rozpoczecia, e.kolejnosc;
+
+Zad. 3
+1. select s.nazwa as "nazwa sektora", count(e.sektor + ifnull(e.sektor,0)) as "ilosc odwiedzin" from sektor s, etapy_wyprawy e where e.sektor=s.id_sektora group by s.nazwa;
+2.SELECT k.nazwa, count(u.id_wyprawy),
+if(count(u.id_wyprawy) = 0, 'nie brał udziału w wyprawie', 'brał udział w wyprawie')
+from kreatura k
+left join uczestnicy u on u.id_uczestnika=idKreatury
+group by k.nazwa;
+
+Zad. 4 
+1. SELECT w.nazwa, SUM(LENGTH(e.dziennik)) AS znaki
+FROM wyprawa w
+JOIN etapy_wyprawy e
+ON w.id_wyprawy = e.idWyprawy
+GROUP BY w.nazwa
+HAVING znaki < 400
+2.select w.nazwa as "wyprawa", sum(z.waga*e.ilosc)/count(u.id_uczestnika) from kreatura k, zasob z, wyprawa w, uczestnicy u, 
+ekwipunek e where z.idZasobu=e.idZasobu and k.idKreatury=e.idKreatury and u.id_uczestnika=k.idKreatury and u.id_wyprawy=w.id_wyprawy group by w.nazwa;
+
+
