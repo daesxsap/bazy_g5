@@ -1,0 +1,64 @@
+zadanie 1
+a)
+delimiter $$
+create trigger waga_befor_insert
+before insert on kreatura
+for each row
+begin
+if new.waga < 0
+then set new.waga=0;
+end if;
+end
+$$
+delimiter ;
+
+zadanie 3;
+a)
+DELIMITER $$
+CREATE PROCEDURE eliksir_sily(IN id int)
+BEGIN
+Update kreatura set udzwig = 1.2 * udziwg where idKreatury = id;
+END
+$$
+DELIMITER ;
+b)
+DELIMITER //
+CREATE FUNCTION wielkie_litery(text varchar(255))
+RETURNS VARCHAR(255)
+BEGIN
+DECLARE ucase VARCHAR(255);
+SET @ucase = UCASE(text);
+RETURN @ucase;
+END
+//
+DELIMITER ;
+
+zadanie 4
+a)
+create table system_alarmowy(id_alarmu int primary key auto_increment, wiadomosc varchar(100));
+b)
+DELIMITER $$
+
+CREATE TRIGGER uczestnicy_after_insert
+AFTER INSERT ON uczestnicy
+FOR EACH ROW
+BEGIN
+DECLARE tesciowa varchar(100);
+DECLARE sektor_id integer;
+SET tesciowa = 'Tesciowa';
+SET sektor_id = 7;
+	
+IF tesciowa in (
+SELECT nazwa from kreatura WHERE idKreatury in 
+( SELECT id_uczestnika from uczestnicy where id_wyprawy=NEW.id_wyprawy)) 
+	
+THEN 
+ IF sektor_id in (
+SELECT sektor FROM etapy_wyprawy WHERE idWyprawy=NEW.id_wyprawy) 
+then 
+ INSERT INTO system_alarmowy VALUES(default,'Tesciowa nadchodzi');
+end if;
+END
+$$
+
+DELIMITER 
