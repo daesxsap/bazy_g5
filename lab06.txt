@@ -19,3 +19,9 @@ year(kreatura.dataUr) between 1670 and 1679 and z.idZasobu=ekwipunek.idZasobu;
 2select k.nazwa from kreatura k left join ekwipunek e on k.idKreatury=e.idKreatury innej join zasob z on e.idZasobu=
 z.idZasobu where z.rodzaj="jedzenie" order by dataUr desc limit 5;
 3.select k.nazwam k2.nazwa from kreatura k, kreatura k2 where k.idKreatury-k2.idKreatury=5;
+
+Zad. 5
+1.SELECT k.rodzaj, AVG(e.ilosc *z.waga) FROM kreatura AS k, ekwipunek AS e, zasob AS z where 
+k.idKreatury=e.idKreatury AND e.idZasobu=z.idZasobu AND k.rodzaj NOT IN('malpa','waz')GROUP BY rodzaj
+HAVING SUM(e.ilosc) < 30;
+2.
